@@ -21,9 +21,9 @@
             <h1>immobelier</h1>
             <p>
                 <?php if (isUserLogin()) : ?>
-                    <?php if ($_SESSION['login'] == "admin"): ?>
+                    <?php if ($_SESSION['login'] == "admin") : ?>
                         <a href="./adminMob/" role="button">Admin</a>
-                    <?php else: ?>
+                    <?php else : ?>
                         <a href="./adminMob/ajout.php" role="button">Ajouter une annonce</a>
                     <?php endif ?>
                     <a href="./login/deconnexion.php" role="button">Se déconnecter</a>

@@ -79,7 +79,7 @@ function suppArticleById(int $idArticle): bool
 
 function insertArticle(string $titre, string $description, string $image, int $id_user): int
 {
-/* function insertArticle(string $titre, string $description, string $image, string $type, string $price, string $surface, string $room, int $id_user): int */
+   /* function insertArticle(string $titre, string $description, string $image, string $type, string $price, string $surface, string $room, int $id_user): int */
 
    require 'pdo.php';
    $requete = 'INSERT INTO articles (titre,description,image,id_user) VALUES (:titre, :description, :image, :id_user)';
@@ -94,7 +94,7 @@ function insertArticle(string $titre, string $description, string $image, int $i
    /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
    $resultat->bindValue(':price', $price, PDO::PARAM_STR);
    $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
-   $resultat->bindValue(':room', $room, PDO::PARAM_STR); */ 
+   $resultat->bindValue(':room', $room, PDO::PARAM_STR); */
 }
 
 function updateArticle(int $id_article, string $titre, string $description, string $image): bool
@@ -157,7 +157,7 @@ function findEmail(string $email): array|bool
    return $resultat->fetch();
 }
 
-function insertUtilisateur(string $nom,string $prenom, string $email, string $pwd,string $role): int
+function insertUtilisateur(string $nom, string $prenom, string $email, string $pwd, string $role): int
 {
    require 'pdo.php';
    $pwdHashe = password_hash($pwd, PASSWORD_DEFAULT);

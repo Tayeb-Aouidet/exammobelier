@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     $target_dir = "../uploads/";
     $imageName = $_FILES["image"]["name"];
     $target_file = $target_dir . basename($imageName);
-    move_uploaded_file($_FILES['image']['tmp_name'],$target_file);
-    
-    
-    if ($imageName):
-    $image = "./uploads/".$imageName;
-    else:
+    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+
+
+    if ($imageName) :
+        $image = "./uploads/" . $imageName;
+    else :
         $image = "";
     endif;
 
