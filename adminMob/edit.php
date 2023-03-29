@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     $titre = cleanData($_POST['titre']);
     $description = cleanData($_POST['description']);
 
-    updateArticle($id, $titre, $description, $image);
+    updateArticle($id, $titre, $description, $image, $type, $price, $surface, $room);
 
     header('Location: ./index.php');
     exit();

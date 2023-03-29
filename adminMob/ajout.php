@@ -1,6 +1,6 @@
 <?php
 /*
-* Ajout d'un article
+* Ajout d'une annonce
 */
 session_start();
 include '../inc/fonctions.php';
