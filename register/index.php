@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
 
     if ($email && $pwd) : 
         if (findEmail($email)) :         
-            $errors = 'Veuiller choisir une autre adresse email !';
+            $errors = 'Veuiller choisir une autre adreese email !';
         else :
             $lastIdUtilisateur = insertUtilisateur($nom,$prenom, $email, $pwd,$role);
             $_SESSION['login'] = findEmail($email)['role'];
 
-            $_SESSION['id_user'] = $lastIdUtilisateur;
+            $_SESSION['utilisateur_id'] = $lastIdUtilisateur;
             if($role === 'admin'):
                redirectUrl('./adminMob/');
             else:

@@ -22,6 +22,22 @@
                 <input type="text" name="nom" id="nom" value="<?= $nom ?>">
             </div>
             <div>
+                <label for="adress">Adress *</label>
+                <input type="text" name="adress" id="adress" value="<?= $adress ?>">
+            </div>
+            <div>
+                <label for="town">town *</label>
+                <input type="text" name="town" id="town" value="<?= $town ?>">
+            </div>
+            <div>
+                <label for="phone">postal_code *</label>
+                <input type="text" name="postal_code" id="postal_code" value="<?= $postal_code ?>">
+            </div>
+            <div>
+                <label for="phone">phone *</label>
+                <input type="text" name="phone" id="phone" value="<?= $phone ?>">
+            </div>
+            <div>
                 <label for="email">Email *</label>
                 <input type="email" name="email" id="email" required value="<?= $email ?>">
             </div>

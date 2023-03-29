@@ -1,6 +1,6 @@
 <?php
 /*
- * Vue Gestion des article
+ * Vue Gestion des articles
  */
 ?>
 <!DOCTYPE html>
