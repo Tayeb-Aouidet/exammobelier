@@ -163,7 +163,7 @@ function insertUtilisateur(string $nom, string $prenom, string $email): int
    $pwdHashe = password_hash($pwd, PASSWORD_DEFAULT);
 
 
-   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,pwd,role) VALUES (:nom, :prenom, :email, :pwd :role)';
+   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,pwd,role) VALUES (:nom, :prenom, :email, :pwd :role)';
    /* $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,phone,pwd,role) VALUES (:nom, :prenom, :email, :pwd, :role)'; */
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':nom', $nom, PDO::PARAM_STR);
