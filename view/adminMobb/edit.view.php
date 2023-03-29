@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Edition article</title>
+    <title>Edition annonces</title>
     <link rel="stylesheet" href="../assets/css/pico.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -18,7 +18,7 @@
                 <input type="titre" name="titre" id="titre" value="<?= $titreDb ?>">
             </div>
             <div>
-                <label for="description">description article</label>
+                <label for="description">description annonce</label>
                 <textarea name="description" id="description"><?= $descriptionDb ?></textarea>
             </div>
             <div>

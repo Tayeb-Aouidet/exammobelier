@@ -1,6 +1,6 @@
 <?php
 /*
-* Page qui appelle la vue pour la gestion des articles
+* Page qui appelle la vue pour la gestion des annonces
 */
 session_start();
 include '../inc/fonctions.php';
