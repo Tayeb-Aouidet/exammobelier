@@ -19,7 +19,7 @@
             </div>
             <div>
                 <label for="description">description annonce</label>
-<textarea name="description" id="description"><?= $description ?></textarea>
+                <textarea name="description" id="description"><?= $description ?></textarea>
             </div>
             <div>
                 <label for="image">Image</label>

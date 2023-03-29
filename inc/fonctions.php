@@ -39,9 +39,9 @@ function textData($valeur)
 
 function isGetIdValid(): bool
 {
-   if (isset($_GET['id']) && is_numeric($_GET['id'])):
+   if (isset($_GET['id']) && is_numeric($_GET['id'])) :
       return true;
-   else:
+   else :
       return false;
    endif;
 }
@@ -78,29 +78,33 @@ function suppArticleById(int $idArticle): bool
 }
 
 function insertArticle(string $titre, string $description, string $image, int $id_user): int
+/* function insertArticle(string $titre, string $description, string $image, string $type, string $price, string $surface, string $room, int $id_user): int */
 {
    require 'pdo.php';
-   $requete = 'INSERT INTO articles (titre,description,image,type,price,surface,room,id_user) VALUES (:titre, :description, :image, :type, :price, :surface,room :id_user)';
+   $requete = 'INSERT INTO articles (titre,description,image,id_user) VALUES (:titre, :description, :image, :id_user)';
+   /*  $requete = 'INSERT INTO articles (titre,description,image,type,price,surface,room,id_user) VALUES (:titre, :description, :image, :type, :price, :surface,room :id_user)'; */
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':titre', $titre, PDO::PARAM_STR);
    $resultat->bindValue(':description', $description, PDO::PARAM_STR);
    $resultat->bindValue(':image', $image, PDO::PARAM_STR);
-   $resultat->bindValue(':type', $type, PDO::PARAM_STR);
+   /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
    $resultat->bindValue(':price', $price, PDO::PARAM_STR);
    $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
+   $resultat->bindValue(':room', $room, PDO::PARAM_STR); */
    $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
-   $resultat->bindValue(':room', $room, PDO::PARAM_STR);
    $resultat->execute();
    return $conn->lastInsertId();
 }
 
-function updateArticle(int $id_article, string $titre, string $description, string $image, string $type, string $price, string $surface, string $room): bool
+function updateArticle(int $id_article, string $titre, string $description, string $image): bool
+/* function updateArticle(int $id_article, string $titre, string $description, string $image, string $type, string $price, string $surface, string $room): bool */
 {
    require 'pdo.php';
 
-   if ($image):
-      $requete = 'UPDATE articles SET titre = :titre, description = :description,image = :image, type = :type, price = :price, surface = :surface, room = :room WHERE id_article = :id_article';
-   else:
+   if ($image) :
+      $requete = 'UPDATE articles SET titre = :titre, description = :description,image = :image WHERE id_article = :id_article';
+   /* $requete = 'UPDATE articles SET titre = :titre, description = :description,image = :image, type = :type, price = :price, surface = :surface, room = :room WHERE id_article = :id_article'; */
+   else :
       $requete = 'UPDATE articles SET titre = :titre, description = :description WHERE id_article = :id_article';
    endif;
 
@@ -108,16 +112,18 @@ function updateArticle(int $id_article, string $titre, string $description, stri
    $resultat->bindValue(':id_article', $id_article, PDO::PARAM_INT);
    $resultat->bindValue(':titre', $titre, PDO::PARAM_STR);
    $resultat->bindValue(':description', $description, PDO::PARAM_STR);
-   $resultat->bindValue(':type', $type, PDO::PARAM_STR);
+   $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
+
+   /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
    $resultat->bindValue(':price', $price, PDO::PARAM_STR);
    $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
    $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
-   $resultat->bindValue(':room', $room, PDO::PARAM_STR);
-   
-   if ($image):
+   $resultat->bindValue(':room', $room, PDO::PARAM_STR);  */
+
+   if ($image) :
       $resultat->bindValue(':image', $image, PDO::PARAM_STR);
    endif;
-   
+
    $resultat->execute();
    return $resultat->execute();
 }
@@ -151,26 +157,29 @@ function findEmail(string $email): array|bool
    return $resultat->fetch();
 }
 
-function insertUtilisateur(string $nom,string $prenom, string $email, string $pwd,string $role): int
+function insertUtilisateur(string $nom, string $prenom, string $email): int
 {
    require 'pdo.php';
    $pwdHashe = password_hash($pwd, PASSWORD_DEFAULT);
 
-   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,phone,pwd,role) VALUES (:nom, :prenom, :email, :adress, :town, :postal_code, :pwd, :phone, :role)';
+
+   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,pwd,role) VALUES (:nom, :prenom, :email, :pwd :role)';
+   /* $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,phone,pwd,role) VALUES (:nom, :prenom, :email, :pwd, :role)'; */
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':nom', $nom, PDO::PARAM_STR);
    $resultat->bindValue(':prenom', $prenom, PDO::PARAM_STR);
    $resultat->bindValue(':email', $email, PDO::PARAM_STR);
-   $resultat->bindValue(':adress', $adress, PDO::PARAM_STR);
-   $resultat->bindValue(':town', $town, PDO::PARAM_STR);
-   $resultat->bindValue(':postal_code', $town, PDO::PARAM_STR);
-   $resultat->bindValue(':phone', $town, PDO::PARAM_STR);
    $resultat->bindValue(':pwd', $pwdHashe, PDO::PARAM_STR);
-   $resultat->bindValue(':role', $role, PDO::PARAM_STR);
+
+   /* $resultat->bindValue(':adress', $adress, PDO::PARAM_STR);
+   $resultat->bindValue(':town', $town, PDO::PARAM_STR);
+   $resultat->bindValue(':postal_code', $postal_code, PDO::PARAM_STR);
+   $resultat->bindValue(':phone', $phone, PDO::PARAM_STR);
+   $resultat->bindValue(':pwd', $pwdHashe, PDO::PARAM_STR);
+   $resultat->bindValue(':role', $role, PDO::PARAM_STR); */
    $resultat->execute();
    return $conn->lastInsertId();
 }
-
 function getUtilisateurAll(): array
 {
    require 'pdo.php';
@@ -190,8 +199,8 @@ function error404(): void
 
 function redirectUrl(string $path = ''): void
 {
-   $homeUrl = 'http://' . $_SERVER['HTTP_HOST']. '/immobelier' ;
-   $homeUrl .= '/'. $path;
+   $homeUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/immobelier';
+   $homeUrl .= '/' . $path;
    header("Location: {$homeUrl}");
    exit();
 }

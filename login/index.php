@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
     $pwd = cleanData($_POST['pwd']);
 
     if ($email) :
-        if (findEmail($email)) :           
-            if (password_verify($pwd, findEmail($email)['pwd'])) :             
+        if (findEmail($email)) :
+            if (password_verify($pwd, findEmail($email)['pwd'])) :
                 $_SESSION['login'] = findEmail($email)['role'];
                 $_SESSION['id_user'] = findEmail($email)['id_user'];
 
                 if (findEmail($email)['role'] === 'admin') :
-                   redirectUrl('adminMob/');
+                    redirectUrl('adminMob/');
                 endif;
 
                 redirectUrl();

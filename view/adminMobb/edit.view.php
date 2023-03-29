@@ -12,7 +12,7 @@
 <body>
     <main class="container">
         <h1>Mise à jour d'une annonce</h1>
-        <form method="POST" class="form"  enctype="multipart/form-data">
+        <form method="POST" class="form" enctype="multipart/form-data">
             <div>
                 <label for="titre">Titre</label>
                 <input type="titre" name="titre" id="titre" value="<?= $titreDb ?>">
