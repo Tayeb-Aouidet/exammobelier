@@ -77,7 +77,7 @@ INSERT INTO `utilisateurs` (`id_user`, `nom`, `prenom`, `pwd`, `email`, `role`, 
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id_article`),
-  ADD KEY `utilisateur_id` (`id_user`);
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Index pour la table `utilisateurs`

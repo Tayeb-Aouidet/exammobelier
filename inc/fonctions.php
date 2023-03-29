@@ -78,8 +78,9 @@ function suppArticleById(int $idArticle): bool
 }
 
 function insertArticle(string $titre, string $description, string $image, int $id_user): int
-/* function insertArticle(string $titre, string $description, string $image, string $type, string $price, string $surface, string $room, int $id_user): int */
 {
+/* function insertArticle(string $titre, string $description, string $image, string $type, string $price, string $surface, string $room, int $id_user): int */
+
    require 'pdo.php';
    $requete = 'INSERT INTO articles (titre,description,image,id_user) VALUES (:titre, :description, :image, :id_user)';
    /*  $requete = 'INSERT INTO articles (titre,description,image,type,price,surface,room,id_user) VALUES (:titre, :description, :image, :type, :price, :surface,room :id_user)'; */
@@ -87,13 +88,13 @@ function insertArticle(string $titre, string $description, string $image, int $i
    $resultat->bindValue(':titre', $titre, PDO::PARAM_STR);
    $resultat->bindValue(':description', $description, PDO::PARAM_STR);
    $resultat->bindValue(':image', $image, PDO::PARAM_STR);
-   /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
-   $resultat->bindValue(':price', $price, PDO::PARAM_STR);
-   $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
-   $resultat->bindValue(':room', $room, PDO::PARAM_STR); */
    $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
    $resultat->execute();
    return $conn->lastInsertId();
+   /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
+   $resultat->bindValue(':price', $price, PDO::PARAM_STR);
+   $resultat->bindValue(':surface', $surface, PDO::PARAM_STR);
+   $resultat->bindValue(':room', $room, PDO::PARAM_STR); */ 
 }
 
 function updateArticle(int $id_article, string $titre, string $description, string $image): bool
@@ -112,7 +113,6 @@ function updateArticle(int $id_article, string $titre, string $description, stri
    $resultat->bindValue(':id_article', $id_article, PDO::PARAM_INT);
    $resultat->bindValue(':titre', $titre, PDO::PARAM_STR);
    $resultat->bindValue(':description', $description, PDO::PARAM_STR);
-   $resultat->bindValue(':id_user', $id_user, PDO::PARAM_STR);
 
    /* $resultat->bindValue(':type', $type, PDO::PARAM_STR);
    $resultat->bindValue(':price', $price, PDO::PARAM_STR);
@@ -157,26 +157,26 @@ function findEmail(string $email): array|bool
    return $resultat->fetch();
 }
 
-function insertUtilisateur(string $nom, string $prenom, string $email): int
+function insertUtilisateur(string $nom,string $prenom, string $email, string $pwd,string $role): int
 {
    require 'pdo.php';
    $pwdHashe = password_hash($pwd, PASSWORD_DEFAULT);
 
 
-   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,pwd,role) VALUES (:nom, :prenom, :email, :pwd :role)';
+   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,pwd,role) VALUES (:nom, :prenom, :email, :pwd, :role)';
    /* $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,phone,pwd,role) VALUES (:nom, :prenom, :email, :pwd, :role)'; */
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':nom', $nom, PDO::PARAM_STR);
    $resultat->bindValue(':prenom', $prenom, PDO::PARAM_STR);
    $resultat->bindValue(':email', $email, PDO::PARAM_STR);
    $resultat->bindValue(':pwd', $pwdHashe, PDO::PARAM_STR);
-
+   $resultat->bindValue(':role', $role, PDO::PARAM_STR);
    /* $resultat->bindValue(':adress', $adress, PDO::PARAM_STR);
    $resultat->bindValue(':town', $town, PDO::PARAM_STR);
    $resultat->bindValue(':postal_code', $postal_code, PDO::PARAM_STR);
    $resultat->bindValue(':phone', $phone, PDO::PARAM_STR);
    $resultat->bindValue(':pwd', $pwdHashe, PDO::PARAM_STR);
-   $resultat->bindValue(':role', $role, PDO::PARAM_STR); */
+    */
    $resultat->execute();
    return $conn->lastInsertId();
 }

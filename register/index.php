@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') :
             /* $lastIdUtilisateur = insertUtilisateur($nom, $prenom, $email, $adress, $town, $postal_code, $phone, $pwd, $role); */
             $_SESSION['login'] = findEmail($email)['role'];
 
-            $_SESSION['utilisateur_id'] = $lastIdUtilisateur;
+            $_SESSION['id_user'] = $lastIdUtilisateur;
             if ($role === 'admin') :
                 redirectUrl('./adminMob/');
             else :
