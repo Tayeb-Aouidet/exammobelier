@@ -156,11 +156,15 @@ function insertUtilisateur(string $nom,string $prenom, string $email, string $pw
    require 'pdo.php';
    $pwdHashe = password_hash($pwd, PASSWORD_DEFAULT);
 
-   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,pwd,role) VALUES (:nom, :prenom, :email, :pwd, :role)';
+   $requete = 'INSERT INTO utilisateurs (nom,prenom,email,adress,town,postal_code,phone,pwd,role) VALUES (:nom, :prenom, :email, :adress, :town, :postal_code, :pwd, :phone, :role)';
    $resultat = $conn->prepare($requete);
    $resultat->bindValue(':nom', $nom, PDO::PARAM_STR);
    $resultat->bindValue(':prenom', $prenom, PDO::PARAM_STR);
    $resultat->bindValue(':email', $email, PDO::PARAM_STR);
+   $resultat->bindValue(':adress', $adress, PDO::PARAM_STR);
+   $resultat->bindValue(':town', $town, PDO::PARAM_STR);
+   $resultat->bindValue(':postal_code', $town, PDO::PARAM_STR);
+   $resultat->bindValue(':phone', $town, PDO::PARAM_STR);
    $resultat->bindValue(':pwd', $pwdHashe, PDO::PARAM_STR);
    $resultat->bindValue(':role', $role, PDO::PARAM_STR);
    $resultat->execute();
